@@ -6,7 +6,7 @@ import networkx
 def computeWaterData(inp):
     wn = wntr.network.WaterNetworkModel(inp)
     sim = wntr.sim.EpanetSimulator(wn)
-    result = sim.run_sim()
+    result = sim.run_sim()      # 注意 所有的run_sim函数中的file_prefix参数需设置路径, 不然管网太大会生成三个大文件, 无法上传至github
     demand = result.node['demand']
     head = result.node['head']
     pressure = result.node['pressure']
