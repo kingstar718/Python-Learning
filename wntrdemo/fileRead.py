@@ -1,7 +1,10 @@
 import os
 import wntr
+import json
+import pandas as pd
+import numpy as np
 
-
+# 将污染节点的信息拿出来, 组成{node:}
 def computeNodeDirt(filrpath):
     fileList = os.listdir(filrpath)
     NodeDirt = {}
@@ -18,9 +21,16 @@ def computeNodeDirt(filrpath):
         # print(Dirt)
         NodeDirt[fileName[:len(fileName) - 4]] = Dirt
         f.close()
-    print(NodeDirt)
+        print("已完成: " , i)
+    '''
+    jsonNode = json.dumps(NodeDirt)
+    with open("F:\\AWorkSpace\\data\\node.json", "w") as f:
+        json.dump(jsonNode, f)
+        '''
+    return NodeDirt
 
 
+# 计算路径下的所有文件的节点列表
 def computeNode(filrpath):
     fileList = os.listdir(filrpath)
     nodeList=[]
@@ -31,10 +41,86 @@ def computeNode(filrpath):
     print("len nodeList", len(nodeList))
     return nodeList
 
+# 将矩阵转换为字典形式
+class computeMatrix():
+    def __init__(self, matrixpath):
+        self.matrixpath = matrixpath
+        self.matrix = pd.read_csv(self.matrixpath, header=None)
+        self.timematrix = np.array(self.matrix)
+
+    def computeNodeDirt(self):
+        nodeDirt = {}
+        for i in range(self.timematrix.shape[1]):
+            #print(self.timematrix[:, i])
+            nodeName = []
+            nodeTime = []
+            twoList = []
+            for n,m in enumerate(self.timematrix[:, i]):
+                # print(n,m)
+                if m!=0:
+                    nodeName.append(n)
+                    nodeTime.append(m)
+            #print("节点%d"%i , nodeName, nodeTime)
+            if len(nodeTime)==0:
+                timeSum = 0
+            else:
+                timeSum = sum(nodeTime) / len(nodeTime)
+            twoList.append(nodeName)
+            twoList.append(timeSum)
+            nodeDirt[i] = twoList
+            #print(i, twoList)
+        print(nodeDirt)
+        return nodeDirt
+
+
+def nodeCP():
+    matrixpath = 'F:\\AWorkSpace\\data\\max.csv'
+    nodeDirt = computeMatrix(matrixpath).computeNodeDirt()
+    importantNode = "F:\\AWorkSpace\\Python-Learning-Data\\datamining2.csv"
+    p = pd.read_csv(importantNode)
+    p = p[['nodeName', 'pipeLen']]
+    p.index = p['nodeName']
+    nodelist = computeNode('F:\\AWorkSpace\\data\\DataCsDegree3\\')
+    lenSum = 0
+    # 计算3628个点的管长总和
+    for i in nodelist:
+        lenSum = lenSum + p.loc[i, 'pipeLen']
+    print(lenSum)
+    psum = 0
+    for i, j in enumerate(nodelist):
+        #print(p.loc[i, 'pipeLen'])
+        #print(nodeDirt[i], j, float(p.loc[j, 'pipeLen']))
+        #print( j, float(p.loc[j, 'pipeLen']))
+        nodeCp = (p.loc[j, 'pipeLen'])/lenSum
+        nodeCp = '{:.8f}'.format(nodeCp)        # 如何对科学计数法保留小数位
+        nodeDirt[i].append(nodeCp)
+    #print(p['nodeName'][25])    # 取列值的node
+    #print(p.loc[25, 'pipeLen'])         # 取索引号的管长
+    nodeJson = json.dumps(nodeDirt)  # 装换为json
+    with open("F:\\AWorkSpace\\data\\3628node.json", "w") as f:     # 保存为json文件
+        json.dump(nodeJson, f)
+    return nodeDirt
+
+
 
 if __name__=="__main__":
-    filepath = 'F:\\AWorkSpace\\data\\data45\\'
+    filepath = 'F:\\AWorkSpace\\data\\DataCsDegree3\\'
 
+    #nodedirt = computeNodeDirt(filepath)
+    #print(nodedirt["1434"])
+    p = nodeCP()
+    ssss = 1/3628
+    ssss = '{:.8f}'.format(ssss)
+    print(ssss)
+
+
+    #nodeList = computeNode(filepath)
+
+    #with open("F:\\AWorkSpace\\data\\node.json", "r") as f:
+        #data = json.load(f)
+    #nodedirt = json.loads(data)
+    #print(nodedirt["10012"])
+    '''
     wn = wntr.network.WaterNetworkModel("cs11021.inp")
     G = wn.get_graph()
     Degree = G.degree()
@@ -56,4 +142,4 @@ if __name__=="__main__":
             if j == i:
                 newlist.remove(j)
                 count +=1
-    print(count, len(newlist))
+    print(count, len(newlist))'''
