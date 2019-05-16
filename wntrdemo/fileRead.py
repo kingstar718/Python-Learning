@@ -97,7 +97,7 @@ def nodeCP():
         nodeDirt[i].append(nodeCp)
     #print(p['nodeName'][25])    # 取列值的node
     #print(p.loc[25, 'pipeLen'])         # 取索引号的管长
-    nodeJson = json.dumps(nodeDirt)  # 装换为json
+    nodeJson = json.dumps(nodeDirt)  # 转换为json
     with open("F:\\AWorkSpace\\data\\3628node.json", "w") as f:     # 保存为json文件
         json.dump(nodeJson, f)
     return nodeDirt
@@ -116,13 +116,13 @@ def nodeCp2():
     diaLen = 0
     nodelist = computeNode('F:\\AWorkSpace\\data\\DataCsDegree3\\')
     for i in nodelist:
-        diaLen = diaLen + p.loc[i, 'DiaLen']
+        diaLen = diaLen + p.loc[i, 'DiaLen']    # 计算所有节点的管径*管长之和
     print(diaLen)
     for i, j in enumerate(nodelist):
         nodeCp2 = (p.loc[j, 'DiaLen']) / diaLen
         nodeCp2 = '{:.8f}'.format(nodeCp2)  # 如何对科学计数法保留小数位
         nodeDirt[str(i)].append(nodeCp2)
-    nodeJson = json.dumps(nodeDirt)  # 装换为json
+    nodeJson = json.dumps(nodeDirt)  # 转换为json
     with open("F:\\AWorkSpace\\data\\3628node2.json", "w") as f:  # 保存为json文件
         json.dump(nodeJson, f)
     return nodeDirt
