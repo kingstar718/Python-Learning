@@ -73,6 +73,7 @@ class computeMatrix():
         return nodeDirt
 
 
+# 将节点管长/全管长作为概率  加入到json文件中
 def nodeCP():
     matrixpath = 'F:\\AWorkSpace\\data\\max.csv'
     nodeDirt = computeMatrix(matrixpath).computeNodeDirt()
@@ -102,16 +103,38 @@ def nodeCP():
     return nodeDirt
 
 
+#新的计算方法 将平均管径*管长/所有节点的平均管径*管长作为新的概率
+def nodeCp2():
+    # 打开原有的json文件
+    with open("F:\\AWorkSpace\\data\\3628node.json", "r") as f:
+        data = json.load(f)
+    nodeDirt  = json.loads(data)
+    importantNode = "F:\\AWorkSpace\\Python-Learning-Data\\datamining2.csv"
+    p = pd.read_csv(importantNode)
+    p = p[['nodeName', 'DiaLen']]
+    p.index = p['nodeName']
+    diaLen = 0
+    nodelist = computeNode('F:\\AWorkSpace\\data\\DataCsDegree3\\')
+    for i in nodelist:
+        diaLen = diaLen + p.loc[i, 'DiaLen']
+    print(diaLen)
+    for i, j in enumerate(nodelist):
+        nodeCp2 = (p.loc[j, 'DiaLen']) / diaLen
+        nodeCp2 = '{:.8f}'.format(nodeCp2)  # 如何对科学计数法保留小数位
+        nodeDirt[str(i)].append(nodeCp2)
+    nodeJson = json.dumps(nodeDirt)  # 装换为json
+    with open("F:\\AWorkSpace\\data\\3628node2.json", "w") as f:  # 保存为json文件
+        json.dump(nodeJson, f)
+    return nodeDirt
+
 
 if __name__=="__main__":
     filepath = 'F:\\AWorkSpace\\data\\DataCsDegree3\\'
 
     #nodedirt = computeNodeDirt(filepath)
     #print(nodedirt["1434"])
-    p = nodeCP()
-    ssss = 1/3628
-    ssss = '{:.8f}'.format(ssss)
-    print(ssss)
+    #p = nodeCP()
+    p = nodeCp2()
 
 
     #nodeList = computeNode(filepath)
