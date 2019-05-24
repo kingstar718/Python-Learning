@@ -1,7 +1,7 @@
 import wntr
 import networkx as nx
 from networkXDemo import computeDegree
-from demo5 import waterQuality, initwnModel
+from waterQualitySimulation import waterQuality, initwnModel
 import pandas as pd
 import numpy as np
 

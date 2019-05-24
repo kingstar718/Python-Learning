@@ -3,47 +3,69 @@ import threading
 import time
 import pandas as pd
 import os
+import json
 
 
-# 初始化管网模型
-def initwnModel(inp):
+def initwnModel(inp, timeDuration = 12*3600, reportTimeStep = 600, reportStart = 0):
+    """
+    初始化管网模型
+    :param inp:  管网inp文件
+    :param timeDuration:  水力时间
+    :param reportTimeStep:  报告间隔
+    :param reportStart:  报告初始时间
+    :return:  wntr的管网对象
+    """
     try:
-        start = time.time()
-        wnModel = wntr.network.WaterNetworkModel(inp)
+        wnModel = wntr.network.WaterNetworkModel(inp)   # 加载管网inp文件
         for i in wnModel.node_name_list:
             wnModel.nodes._data[i]._initial_quality = 0  # 设置初始节点的水质都为0
-        wnModel.options.quality.mode = 'CHEMICAL'
-        wnModel.options.time.duration = 12 * 3600
-        wnModel.options.time.report_timestep = 600
-        wnModel.options.time.report_start = 0
-        #print("加载管网已完成,  用时 : ", time.time() - start)
+
+        wnModel.options.quality.mode = 'CHEMICAL'   # 设置污染物为CHEMICAL
+        wnModel.options.time.duration = timeDuration       # 设置水力时间
+        wnModel.options.time.report_timestep = reportTimeStep   # 设置报告间隔
+        wnModel.options.time.report_start = reportStart     # 设置报告初始时间
         return wnModel
     except:
         print("初始化管网模型发生异常")
 
 
-# 给特定的节点注入污染
-def waterQuality(wnModel, nodeName):
+def waterQuality(wnModel, nodeName, startTime = 0, endTime = 12*3600, quality = 10000, rptFile = "F:\AWorkSpace\datatemp\ Node_"):
+    """
+    特定节点污染物注入模拟
+    :param wnModel:  wntr 水力模型对象
+    :param nodeName:   节点名称
+    :param startTime:   污染开始时间
+    :param endTime:     污染结束时间
+    :param quality:  污染注入克数
+    :param rptFile:  报告路径
+    :return:  所有节点的间隔报告时间内的污染状况
+    """
     try:
-
         start = time.time()
+        # 设置源模式
         source_pattern = wntr.network.elements.Pattern.binary_pattern('SourcePattern',
-                                                                      start_time=0,
-                                                                      end_time=12 * 3600,
-                                                                      duration=wnModel.options.time.duration,
-                                                                      step_size=wnModel.options.time.pattern_timestep)
-        wnModel.add_pattern('SourcePattern', source_pattern)
-        wnModel.add_source('Source1', nodeName, 'MASS', 10000,
-                           'SourcePattern')  # name, node_name, source_type, quality, pattern=None'
-        epanet_sim = wntr.sim.EpanetSimulator(wnModel)
-        rpt = "F:\AWorkSpace\datatemp\ Node_%s" % nodeName
-        epanet_sim_results = epanet_sim.run_sim(file_prefix=rpt)
-        wnModel.remove_source('Source1')
-        wnModel.remove_pattern('SourcePattern')
-        rptfile = "F:\AWorkSpace\datatemp\ Node_%s.rpt"% nodeName
-        binfile = "F:\AWorkSpace\datatemp\ Node_%s.bin"% nodeName
-        inpfile = "F:\AWorkSpace\datatemp\ Node_%s.inp"% nodeName
+                                                                      start_time = startTime,
+                                                                      end_time = endTime,
+                                                                      duration = wnModel.options.time.duration,
+                                                                      step_size = wnModel.options.time.pattern_timestep)
+        wnModel.add_pattern('SourcePattern', source_pattern)        # 添加模式
+        wnModel.add_source('Source1', nodeName, 'MASS', quality,
+                           'SourcePattern')  # name, node_name, source_type, quality, pattern=None'     # 源注入的参数
+        epanet_sim = wntr.sim.EpanetSimulator(wnModel)      # 加载wntr水力模型
+        #rpt = "F:\AWorkSpace\datatemp\ Node_%s" % nodeName      # 设置输出文件位置
+        rpt = rptFile + str(nodeName)   # 设置输出文件位置
+        epanet_sim_results = epanet_sim.run_sim(file_prefix=rpt)    # 水质模拟
+        wnModel.remove_source('Source1')        #除去现有源模式
+        wnModel.remove_pattern('SourcePattern')     # 除去现有模式
+        # 三个输出文件位置
+        #rptfile = "F:\AWorkSpace\datatemp\ Node_%s.rpt"% nodeName
+        # binfile = "F:\AWorkSpace\datatemp\ Node_%s.bin"% nodeName
+        # inpfile = "F:\AWorkSpace\datatemp\ Node_%s.inp"% nodeName
+        rptfile = rpt + ".rpt"
+        binfile = rpt + ".bin"
+        inpfile = rpt + ".inp"
         if os.path.exists(rptfile) and os.path.exists(binfile) and os.path.exists(inpfile):
+            # 计算完成, 删除目标文件
             os.remove(rptfile)
             os.remove(binfile)
             os.remove(inpfile)
@@ -54,13 +76,20 @@ def waterQuality(wnModel, nodeName):
     except:
         print("水质模拟发生异常")
 
+
 def computeTime(wnModel, epaDataFrame):
-    start = time.time()
+    """
+    从水质模拟结果计算污染事件发生 所有其他节点第一次发现污染的时间
+    :param wnModel:  wntr水力模型对象
+    :param epaDataFrame:  某节点水质模拟结果
+    :return:  {节点名:  初次发生污染时间}
+    """
     ContaminationList= []
     # 将受到污染的节点拿出来
     for i in wnModel.node_name_list:
         if epaDataFrame.loc[43200, i] != 0:
             ContaminationList.append(i)
+
     ContaminationDirt = {}  # 键存节点名称 值存节点首次发生污染的时间
     for conNode in ContaminationList:
         count = 0
@@ -70,50 +99,36 @@ def computeTime(wnModel, epaDataFrame):
             else:
                 ContaminationDirt[conNode] = count*10
                 break
-    #print("单节点计算用时 : ", time.time() - start)
     return ContaminationDirt
 
-def computeTimeDirt(wnModel):
-    timeDirt = {}
-    for node in wnModel.node_name_list:
-        nodeQulityList = waterQuality(wnModel, node)
-        nodeDirt = computeTime(wnModel, nodeQulityList)
-        p = pd.DataFrame([nodeDirt])
-        p.to_csv("F:\AWorkSpace\data\ %s.csv" % node, index=None, columns=None)
-        #timeDirt[node] = nodeDirt
-    #return timeDirt
 
-def poolDemo(wnModel, nodeNumList):
-    #Qdirt={}
-    exList = []
+def computeTimeDirt(wnModel, nodeNumList, rptFile = "F:\AWorkSpace\data\ " ):
+    """
+    计算管网所有事件的污染节点以及首次发生污染的时间
+    :param wnModel:  wntr水力模型
+    :param nodeNumList:  污染事件发生的节点集合
+    :param rptFile:  保存的文件路径
+    :return:  单个时间的csv文件, 所有事件的总的json文件
+    """
+    Qdirt={}
     for nodeName in nodeNumList:
         try:
-            qList = waterQuality(wnModel, nodeName)
-            qDirt = computeTime(wnModel, qList)
-            print(qDirt)
-            pPd = pd.DataFrame([qDirt])
+            nodeWaterQualityDataFrame = waterQuality(wnModel, nodeName)
+            nodeDirt = computeTime(wnModel, nodeWaterQualityDataFrame)
+            print(nodeDirt)
+            pPd = pd.DataFrame([nodeDirt])      # 将字典转换为DataFrame类型
             # print(nodeName)
             #Qdirt[nodeName] = qDirt
-            pPd.to_csv("F:\AWorkSpace\data\ %s.csv" % nodeName, index=None, columns=None)
+            csvFile = rptFile + str(nodeName) + ".csv"
+            pPd.to_csv(csvFile, index=None, columns=None)
+            Qdirt[nodeName] = nodeDirt  # 所有节点模拟的字典
         except:
             print("Node %s 发生异常" % nodeName)
-            exList.append(nodeName)
-            continue
-    print(exList)
-    '''
-        for node in exList:
-        try:
-            # wnModel = copy.copy(wnModel1)
-            qList = waterQuality(wnModel1, node)
-            qDirt = computeTime(wnModel1, qList)
-            pPd = pd.DataFrame([qDirt])
-            # print(nodeName)
-            # Qdirt[nodeName] = qDirt
-            pPd.to_csv("F:\AWorkSpace\data\ %s.csv" % node, index=None, columns=None)
-        except:
-            print("Node %s 仍然失败" % node)
-            continue'''
-
+    # 将总的节点污染数据作为一个json文件存储起来
+    jsonQDirt = json.dumps(Qdirt)
+    jsonFileName = rptFile + "waterQuality.json"
+    with open(jsonFileName, "w") as f:
+        json.dump(jsonQDirt, f)
 
 if __name__ == "__main__":
     inp1 = "Net3.inp"
