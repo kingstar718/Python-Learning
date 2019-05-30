@@ -128,13 +128,16 @@ def nodeCp2():
     return nodeDirt
 
 
+
+
 if __name__=="__main__":
     filepath = 'F:\\AWorkSpace\\data\\DataCsDegree3\\'
 
-    #nodedirt = computeNodeDirt(filepath)
+    nodedirt = computeNodeDirt(filepath)
     #print(nodedirt["1434"])
     #p = nodeCP()
-    p = nodeCp2()
+    #p = nodeCp2()
+
 
 
     #nodeList = computeNode(filepath)

@@ -20,5 +20,9 @@ print(c, len(c))'''
 
 m = pd.DataFrame(index=['2','q','w'])
 m['data'] = [1,2,3]
-
+m['daw1'] = [4,5,6]
+m['op'] = [6,7,8]
+print(m)
 print(m['data']['q'])
+nm = m.values
+print(np.dot(nm.T, m))

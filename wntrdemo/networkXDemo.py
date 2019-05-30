@@ -72,6 +72,5 @@ def computeCoor():
 if __name__=="__main__":
     import math
     #nodeCoor = computeCoor()
-    inp1 = "Net3.inp"
-    inp2 = "cs11021.inp"
+    inp2 = "F:\AWorkSpace\Python-Learning-Data\cs11021.inp"
     #nodeInpCoor = computeInpCoor(inp2)
