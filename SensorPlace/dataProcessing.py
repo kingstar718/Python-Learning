@@ -68,10 +68,38 @@ def computeNode2(jsonpath):
     with open("F:\\AWorkSpace\\Python-Learning-Data\\DDirtnode.json", "w") as f:
         dump(ddjson, f)
 
+def changeNumber(jsonpath):
+    wModel = wntr.network.WaterNetworkModel("F:\\AWorkSpace\\Python-Learning-Data\\cs11021.inp")
+    nodeDirt = {}
+    for i, j in enumerate(wModel.node_name_list):
+        nodeDirt[j] = i
+
+    newDirt = {}
+    d  = readNodeJson(jsonpath)
+    for i, j in enumerate(d.keys()):
+        newDirt[i] = d[j]       # 将字典的key中的管网编号改成0-66383
+    for i in d.values():
+        for j in range(len(i[0])):
+            k = i[0][j]
+            v = nodeDirt[k]
+            i[0][j] = v     # 将values里第一个所有节点的编号改为0-66383
+    newJson = dumps(newDirt)
+    with open("F:\\AWorkSpace\\Python-Learning-Data\\DDirtnode3.json", "w") as f:
+        dump(newJson, f)
+    return newDirt
+
 
 if __name__=="__main__":
     jsonpath = "F:\\AWorkSpace\\Python-Learning-Data\\AllNode.json"
     jsonpath2 = "F:\\AWorkSpace\\Python-Learning-Data\\node.json"
+    jsonpath3 = "F:\\AWorkSpace\\Python-Learning-Data\\DDirtnode3.json"
+    jsonpath4 = "F:\\AWorkSpace\\data\\3628node2.json"
+
+    p = readNodeJson(jsonpath3)
+    for i in p.keys():
+        print(p[i][1])
+
+
 
     '''
     # 将污染数据解析到所有点, 即所有节点都有能监测到的污染事件编号和时间

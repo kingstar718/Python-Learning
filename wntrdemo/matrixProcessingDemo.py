@@ -34,7 +34,8 @@ class weightCalculation():
     # 评价指标Xj是以同等地位参与评价过程这个条件为前提的, 而事实上Xj之间的相对重要性程度是不同的
     def computeW(self):
         p = pd.read_csv(self.filePath)
-        p = p[["demDiff", "perDiff", "AveDia", "diaDiff", "pipeLen", "DiaLen", "Degree"]]
+        #p = p[["demDiff", "perDiff", "AveDia", "diaDiff", "pipeLen", "DiaLen", "Degree"]]
+        p = p[["perDiff", "AveDia", "pipeLen", "DiaLen", "Degree"]]
         npl = p.values
         phalanx = np.dot(npl.T, npl)
         a, b = np.linalg.eig(phalanx)  # 计算矩阵的特征值, 特征向量
@@ -49,7 +50,7 @@ class weightCalculation():
 
 
 if __name__=="__main__":
-    filePath = "F:\\AWorkSpace\\Python-Learning-Data\\datamining3.csv"
+    filePath = "F:\\AWorkSpace\\Python-Learning-Data\\datamining2.csv"
     filePath2 = "F:\\AWorkSpace\\Python-Learning-Data\\datatest.csv"
 
     l = weightCalculation(filePath).computeW()
