@@ -128,8 +128,6 @@ def nodeCp2():
     return nodeDirt
 
 
-
-
 if __name__=="__main__":
     filepath = 'F:\\AWorkSpace\\data\\DataCsDegree3\\'
 

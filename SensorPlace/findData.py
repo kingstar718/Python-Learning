@@ -3,6 +3,11 @@ import numpy as np
 import pandas as pd
 import networkx
 
+'''
+节点指标数据挖掘
+'''
+
+
 def computeWaterData(inp):
     wn = wntr.network.WaterNetworkModel(inp)
     sim = wntr.sim.EpanetSimulator(wn)
@@ -17,7 +22,7 @@ def diffCal(list):
     listLen = len(list)
     return abs(list[0]-list[listLen-1])
 
-
+# 主函数
 def waterdatamining(inp):
     wn = wntr.network.WaterNetworkModel(inp)
     wn.options.time.duration = 24 * 3600        # 设置水力时间为24小时
@@ -79,11 +84,6 @@ def waterdatamining(inp):
     pdfile = "F:\\AWorkSpace\\Python-Learning-Data\\datamining.csv"
     waterData.to_csv(pdfile)
     return waterData
-
-
-
-#print(wn.links._data['20'].diameter)
-#print(wn.links._data['10'].diameter)
 
 
 if __name__=="__main__":
