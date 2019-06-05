@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 
 html = urlopen("http://www.pythonscraping.com/pages/warandpeace.html")
 bsObj = BeautifulSoup(html, features="html5lib")
-
 """
 通过 BeautifulSoup 对象，我们可以用 findAll 函数抽取只包含在 <span class="green"></
 span> 标签里的文字，这样就会得到一个人物名称的 Python 列表（findAll 是一个非常灵

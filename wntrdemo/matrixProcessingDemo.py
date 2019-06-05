@@ -55,9 +55,6 @@ if __name__=="__main__":
 
     l = weightCalculation(filePath).computeW()
     print(l)
-    #demo1()
-
-    pass
 
 
 
