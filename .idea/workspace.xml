@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8c17058-6233-47ac-9280-9599f3303807" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spiderdemo/ch-4-urllib2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spiderdemo/ch-5-request.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Python-Learning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Python-Learning.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spiderdemo/ch-6-re.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiderdemo/ch-3-urllib.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiderdemo/ch-4-urllib1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiderdemo/cnblogspider.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,11 +42,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spiderdemo/ch-5-request.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+            <state relative-caret-position="260">
+              <caret line="109" selection-start-line="109" selection-end-line="109" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spiderdemo/ch-6-re.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="108" selection-start-line="108" selection-end-line="108" />
             </state>
           </provider>
         </entry>
@@ -81,6 +87,7 @@
         <option value="$PROJECT_DIR$/spiderdemo/ch-4-urlib2.py" />
         <option value="$PROJECT_DIR$/spiderdemo/ch-4-urllib2.py" />
         <option value="$PROJECT_DIR$/spiderdemo/ch-5-request.py" />
+        <option value="$PROJECT_DIR$/spiderdemo/ch-6-re.py" />
       </list>
     </option>
   </component>
@@ -175,7 +182,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ch-5-request">
+  <component name="RunManager" selected="Python.ch-6-re">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="Python-Learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -264,6 +271,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="ch-6-re" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Python-Learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\UsualSoft\Anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/spiderdemo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/spiderdemo/ch-6-re.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="douban1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Python-Learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -286,35 +315,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test1" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Python-Learning" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="D:\UsualSoft\Anaconda3\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/spiderdemo/douban" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/spiderdemo/douban/test1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.ch-6-re" />
         <item itemvalue="Python.ch-5-request" />
         <item itemvalue="Python.ch-4-urllib2" />
         <item itemvalue="Python.douban1" />
         <item itemvalue="Python.ch-3-urllib" />
-        <item itemvalue="Python.test1" />
       </list>
     </recent_temporary>
   </component>
@@ -343,7 +350,7 @@
       <workItem from="1559316559026" duration="980000" />
       <workItem from="1559317562381" duration="1412000" />
       <workItem from="1559369443071" duration="759000" />
-      <workItem from="1559887899287" duration="14740000" />
+      <workItem from="1559887899287" duration="25737000" />
     </task>
     <task id="LOCAL-00001" summary="spider">
       <created>1558879386703</created>
@@ -366,11 +373,25 @@
       <option name="project" value="LOCAL" />
       <updated>1559318370769</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="spider">
+      <created>1559909651775</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1559909651775</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Requests">
+      <created>1559914751915</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1559914751915</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25875000" />
+    <option name="totallyTimeSpent" value="36872000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -436,17 +457,19 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="spider" />
     <MESSAGE value="change" />
-    <option name="LAST_COMMIT_MESSAGE" value="change" />
+    <MESSAGE value="spider" />
+    <MESSAGE value="Requests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Requests" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Python_Learning$douban1.coverage" NAME="douban1 Coverage Results" MODIFIED="1559896083502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiderdemo/douban" />
     <SUITE FILE_PATH="coverage/Python_Learning$ch_2_beautifulsoup.coverage" NAME="ch-2-beautifulsoup Coverage Results" MODIFIED="1558879592459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiderdemo" />
+    <SUITE FILE_PATH="coverage/Python_Learning$ch_6_re.coverage" NAME="ch-6-re Coverage Results" MODIFIED="1559920920433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiderdemo" />
     <SUITE FILE_PATH="coverage/Python_Learning$ch_3_mydemo.coverage" NAME="ch-3-mydemo Coverage Results" MODIFIED="1558880698712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiderdemo" />
     <SUITE FILE_PATH="coverage/Python_Learning$demo1.coverage" NAME="demo1 Coverage Results" MODIFIED="1559317990964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sqldemo" />
     <SUITE FILE_PATH="coverage/Python_Learning$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1559888281111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiderdemo/douban" />
-    <SUITE FILE_PATH="coverage/Python_Learning$ch_5_request.coverage" NAME="ch-5-request Coverage Results" MODIFIED="1559909509321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiderdemo" />
+    <SUITE FILE_PATH="coverage/Python_Learning$ch_5_request.coverage" NAME="ch-5-request Coverage Results" MODIFIED="1559914520426" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiderdemo" />
     <SUITE FILE_PATH="coverage/Python_Learning$demo6.coverage" NAME="demo6 Coverage Results" MODIFIED="1559316975096" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wntrdemo" />
     <SUITE FILE_PATH="coverage/Python_Learning$ch_4_urllib2.coverage" NAME="ch-4-urllib2 Coverage Results" MODIFIED="1559908877261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiderdemo" />
     <SUITE FILE_PATH="coverage/Python_Learning$ch_1_beautifulsoup.coverage" NAME="ch-1-beautifulsoup Coverage Results" MODIFIED="1559888198958" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiderdemo" />
@@ -729,10 +752,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/spiderdemo/favicon.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/spiderdemo/ch-5-request.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        <state relative-caret-position="260">
+          <caret line="109" selection-start-line="109" selection-end-line="109" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spiderdemo/ch-6-re.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
         </state>
       </provider>
     </entry>
