@@ -67,6 +67,7 @@ def write_to_file(content):
         print(type(json.dumps(content)))
         f.write(json.dumps(content, ensure_ascii=False)+'\n')
 
+
 def main(offset):
     url = 'https://maoyan.com/board/4?offset=' + str(offset)
     html = get_one_page(url)
