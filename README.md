@@ -10,6 +10,14 @@
 
 [2. Python如何实现简单的多进程](https://github.com/kingstar718/Python-Learning/blob/master/wntrdemo/multiprocessingDemo.py)
 
-[3. wntr管网简化函数demo](https://github.com/kingstar718/Python-Learning/blob/master/wntrdemo/SimplifyNetwork.py)
+### WNTR水力模型
+[1. wntr管网简化函数demo](https://github.com/kingstar718/Python-Learning/blob/master/wntrdemo/SimplifyNetwork.py)
 
-[4. 简单实现wntr管网节点的图形显示](https://github.com/kingstar718/Python-Learning/blob/master/SensorPlace/drawNode.py)
+[2. 简单实现wntr管网节点的图形显示](https://github.com/kingstar718/Python-Learning/blob/master/SensorPlace/drawNode.py)
+
+### 爬虫
+[1.urllib, bs, request, re库demo](https://github.com/kingstar718/Python-Learning/tree/master/spiderdemo)
+
+[1.爬取猫眼电影](https://github.com/kingstar718/Python-Learning/blob/master/spiderdemo/maoyan/ch-7-maoyan.py)
+
+[2.爬取豆瓣图书TOP250](https://github.com/kingstar718/Python-Learning/blob/master/spiderdemo/douban/douban250.py)
