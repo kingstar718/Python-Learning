@@ -1,8 +1,6 @@
-#-*- coding:utf-8 -*-
+# encoding:utf-8
 import wntr
-import threading
 import time
-import pandas as pd
 import os
 import json
 import multiprocessing

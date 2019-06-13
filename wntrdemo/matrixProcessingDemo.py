@@ -33,12 +33,16 @@ class weightCalculation():
     # 评价指标Xj是以同等地位参与评价过程这个条件为前提的, 而事实上Xj之间的相对重要性程度是不同的
     def computeW(self):
         p = pd.read_csv(self.filePath)
-        p = p[["demDiff", "perDiff", "AveDia", "diaDiff", "pipeLen", "DiaLen", "Degree"]]
-        #p = p[["perDiff", "AveDia", "pipeLen", "DiaLen", "Degree"]]
+        print(p)
+        #p = p[["demDiff", "perDiff", "AveDia", "diaDiff", "pipeLen", "DiaLen", "Degree"]]
+        p = p[["perDiff", "AveDia", "pipeLen", "DiaLen", "Degree"]]
+
         npl = p.values
         phalanx = np.dot(npl.T, npl)
         a, b = np.linalg.eig(phalanx)  # 计算矩阵的特征值, 特征向量
         b2 = b.T
+        print(b2)   # 查看b2首行是否全为正 或者全为负
+        # print(np.dot(b.T, b))
         l = []
         # 得到最大特征值对应的特征向量并进行归一化
         for i in b2[0]:
@@ -48,14 +52,26 @@ class weightCalculation():
 
 
 
+
 if __name__=="__main__":
     filePath = "F:\\AWorkSpace\\Python-Learning-Data\\datamining3.csv"
     filePath2 = "F:\\AWorkSpace\\Python-Learning-Data\\datatest.csv"
 
     l = weightCalculation(filePath).computeW()
-    print(l)
+    print(type)
+    '''
+    # print(l)
+    # n = np.array([[1,2,3,4,5],[3,4,5,6,7]])
+    np.set_printoptions(suppress=True)
+    n = np.array([[0.1, 0.2, 0.3, 0.2, 0.2], [0.1, 0.3, 0.1, 0.4, 0.1], [0.1, 0.3, 0.1, 0.4, 0.1], [0.1, 0.3, 0.1, 0.4, 0.1]])
+    # print(n)
+    m = np.dot(n.T, n)
+    print(m)
+    a, b = np.linalg.eig(m)
 
-
+    print(b)
+    # print(np.dot(b.T, b))
+'''
 
 
 

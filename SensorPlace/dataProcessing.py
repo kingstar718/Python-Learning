@@ -1,5 +1,4 @@
 # encoding:utf-8
-import json
 import wntr
 from json import load, loads, dump, dumps
 
@@ -95,9 +94,12 @@ if __name__=="__main__":
     jsonpath3 = "F:\\AWorkSpace\\Python-Learning-Data\\DDirtnode3.json"
     jsonpath4 = "F:\\AWorkSpace\\data\\3628node2.json"
 
+
+
+    '''
     p = readNodeJson(jsonpath3)
     for i in p.keys():
-        print(p[i][1])
+        print(p[i][1])'''
 
 
 
