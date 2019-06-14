@@ -5,8 +5,9 @@ import os
 import json
 import multiprocessing
 
+
 # 水质模拟的类
-class waterQualitySim:
+class WaterQualitySim:
     def __init__(self, inp):
         self.wnModel = self.initwnModel(inp)     # 管网模型对象
         self.nodeList = self.wnModel.node_name_list     # 管网所有节点
@@ -107,7 +108,7 @@ class waterQualitySim:
         return ContaminationDirt
 
     # 主函数  从加载
-    def computeTimeDirt(self, wnModel, nodeNumList, rptFile="F:\AWorkSpace\data\ ", isJson = True):
+    def computeTimeDirt(self, wnModel, nodeNumList, rptFile="F:\AWorkSpace\data\ ", is_json=True):
         """
         计算管网所有事件的污染节点以及首次发生污染的时间
         :param wnModel:  wntr水力模型
@@ -125,7 +126,7 @@ class waterQualitySim:
             except:
                 print("Node %s 发生异常" % nodeName)
         # 将总的节点污染数据作为一个json文件存储起来
-        if isJson == True:
+        if is_json is True:
             jsonQDirt = json.dumps(Qdirt)
             jsonFileName = rptFile + "waterQuality.json"
             with open(jsonFileName, "w") as f:
@@ -133,7 +134,7 @@ class waterQualitySim:
         return Qdirt
 
 
-    def parallelComputeTimeDirt(self, wnModel, nodeNumList, rptFile="F:\AWorkSpace\data\ ", parallelNum = 3, isJson = True):
+    def parallelComputeTimeDirt(self, wnModel, nodeNumList, rptFile="F:\AWorkSpace\data\ ", parallelNum = 3, is_json=True):
         """
         计算管网所有事件的污染节点以及首次发生污染的时间
         :param wnModel:  wntr水力模型
@@ -154,7 +155,7 @@ class waterQualitySim:
         sumDirt = {}
         for i in result:
             sumDirt.update(i.get())     # 从并行里拿出结果并进行字典整合
-        if isJson == True:
+        if is_json is True:
             jsonQDirt = json.dumps(sumDirt)
             jsonFileName = rptFile + "waterQuality.json"
             with open(jsonFileName, "w") as f:
@@ -166,7 +167,7 @@ if __name__ == "__main__":
     inp1 = "F:/AWorkSpace/Python-Learning-Data/Net3.inp"
     inp2 = "F:/AWorkSpace/Python-Learning-Data/ky8.inp"
     inp3 = "F:/AWorkSpace/Python-Learning-Data/cs11021.inp"
-    wnMode = waterQualitySim(inp2)
+    wnMode = WaterQualitySim(inp2)
     wn = wnMode.wnModel
     wnlist = wnMode.nodeList
     nodeDirt = wnMode.parallelComputeTimeDirt
