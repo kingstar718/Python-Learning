@@ -22,7 +22,8 @@ class WaterQualitySimData():
         :param: json文件路径
         :return:  json文件  包含所有节点的能监测到的事件编号和平均监测时间
         """
-        d = self.read_node_json()
+        # d = self.read_node_json()
+        d = self.thing_node()    # j将其改为新的字典形式
         new_dirt = {}
         for i in d.keys():      # 所有节点编号
             l = []
@@ -72,11 +73,31 @@ class WaterQualitySimData():
                 dump(new_json, f)
         return new_dirt
 
+    def thing_node(self):
+        """
+        将之前的{事件: {节点: 时间, 节点: 时间, ...}}
+        改为{节点: {事件: 时间, 事件: 时间}, ...}
+        :return: 新的dirt
+        """
+        node_dirt = self.read_node_json()
+        key_list = list(node_dirt.keys())
+        new_dirt = {}
+        for i in key_list:
+            temp_dirt = {}
+            for j in key_list:
+                thing_list = list(node_dirt[j].keys())
+                if i in thing_list:
+                    thing_time = node_dirt[j][i]
+                    temp_dirt[j] = thing_time
+            new_dirt[i] = temp_dirt
+            print("节点 %s 能监测到的事件已搜寻完成" % i)
+        return new_dirt
+
 
 if __name__ == "__main__":
     json_path = "F:\\AWorkSpace\\data\\test\\waterQuality.json"
     # 函数测试
     wnsd = WaterQualitySimData(json_path)
-    nodeDirt = wnsd.read_node_json()
-    nodeDirt2 = wnsd.compute_node()
-    nodeDirt3 = wnsd.change_number()
+    #nodeDirt = wnsd.read_node_json()
+    #nodeDirt2 = wnsd.compute_node()
+    nodeDirt3 = wnsd.change_number(is_out=True)

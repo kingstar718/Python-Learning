@@ -9,6 +9,7 @@ import multiprocessing
 # 水质模拟的类
 class WaterQualitySim:
     def __init__(self, inp):
+        self.inp_path = inp
         self.wn_model = self.init_model(inp)     # 管网模型对象
         self.nodeList = self.wn_model.node_name_list     # 管网所有节点
         self.simpleNodeResult = self.compute_time_dirt(self.wn_model, self.nodeList, rpt_file="F:/AWorkSpace/data/test/")
