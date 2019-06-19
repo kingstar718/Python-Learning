@@ -131,7 +131,7 @@ def nodeCp2():
 if __name__=="__main__":
     filepath = 'F:\\AWorkSpace\\data\\DataCsDegree3\\'
 
-    nodedirt = computeNodeDirt(filepath)
+    # nodedirt = computeNodeDirt(filepath)
     #print(nodedirt["1434"])
     #p = nodeCP()
     #p = nodeCp2()
@@ -167,3 +167,19 @@ if __name__=="__main__":
                 newlist.remove(j)
                 count +=1
     print(count, len(newlist))'''
+
+    '''
+        # 从全部节点中拿到那3628个节点的权值
+    path = "F:\\AWorkSpace\\Python-Learning-Data\\json_node_weight.json"
+    with open(path, "r") as f:
+        data = json.load(f)
+    #print(data)
+    nodeList = computeNode(filepath)
+    node_json = {}
+    for i in nodeList:
+        node_json[i] = data[i]
+    print(node_json)
+    path = "F:\\AWorkSpace\\Python-Learning-Data\\json_node3628_weight.json"
+    with open(path, "w") as f:
+        json.dump(node_json, f)
+        '''

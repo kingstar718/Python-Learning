@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 np.set_printoptions(suppress=True, threshold=np.nan)
-
+import json
 
 def demo1():
     A = np.array([[3, -1], [-1, 3]])
@@ -60,30 +60,38 @@ class WeightCalculation():
                             new_p["pipeLen"]*weights_list[2]+\
                             new_p["DiaLen"]*weights_list[3]+\
                             new_p["Degree"]*weights_list[4]
-        print(type(evaluation_result))
-        print(evaluation_result)
+        #print(type(evaluation_result))
+        print(sum(evaluation_result))
         # p["evaluation_result"] = evaluation_result
-        # p.to_csv("F:\\AWorkSpace\\Python-Learning-Data\\datamining__weight_result.csv")
+        # p.to_csv("F:\\AWorkSpace\\Python-Learning-Data\\datamining__weight_result2.csv")
+
+    # 将权重拿出来, 放进单独的文件里
+    def add_weight(self):
+        p = pd.read_csv("F:\\AWorkSpace\\Python-Learning-Data\\datamining__weight_result.csv")
+        node_name = p[["nodeName", "evaluation_result"]]
+        node_json = node_name.to_json()
+        path = "F:\\AWorkSpace\\Python-Learning-Data\\json_node_weight.json"
+
+        with open(path, "r") as f:
+            data = json.load(f)
+        m = list(data["nodeName"].values())
+        n = list(data["evaluation_result"].values())
+        node_dirt = {}
+        for i in range(len(m)):
+            node_dirt[m[i]] = n[i]
+        print(node_dirt)
+        with open(path, "w") as f:
+            json.dump(node_dirt, f)
+        return node_dirt
 
 
 if __name__=="__main__":
     filePath = "F:\\AWorkSpace\\Python-Learning-Data\\datamining2.csv"
     filePath2 = "F:\\AWorkSpace\\Python-Learning-Data\\datatest.csv"
 
-    print(WeightCalculation(filePath).compute_result())
-    '''
-    # print(l)
-    # n = np.array([[1,2,3,4,5],[3,4,5,6,7]])
-    np.set_printoptions(suppress=True)
-    n = np.array([[0.1, 0.2, 0.3, 0.2, 0.2], [0.1, 0.3, 0.1, 0.4, 0.1], [0.1, 0.3, 0.1, 0.4, 0.1], [0.1, 0.3, 0.1, 0.4, 0.1]])
-    # print(n)
-    m = np.dot(n.T, n)
-    print(m)
-    a, b = np.linalg.eig(m)
+    # print(WeightCalculation(filePath).compute_result())
 
-    print(b)
-    # print(np.dot(b.T, b))
-'''
+
 
 
 

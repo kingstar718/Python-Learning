@@ -112,5 +112,5 @@ if __name__ == "__main__":
     json_path = "F:\\AWorkSpace\\data\\test\\waterQuality_ky8.json"
     json_path2 = "F:\\AWorkSpace\\Python-Learning-Data\\node.json"
     # 函数测试
-    wnsd = WaterQualitySimData(json_path)
-    nodeDirt = wnsd.change_number()
+    # wnsd = WaterQualitySimData(json_path)
+    # nodeDirt = wnsd.change_number()
