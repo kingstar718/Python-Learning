@@ -7,7 +7,7 @@ import numpy as np
 # Create a water network model
 inp1 = "Net3.inp"
 inp2 = "cs11021.inp"
-#wn = wntr.network.WaterNetworkModel(inp1)
+#wn = simulation.network.WaterNetworkModel(inp1)
 
 #G = wn.get_graph()
 '''
@@ -41,7 +41,7 @@ def computeDegree(wnModel):
     return k3
 
 
-#wn = wntr.network.WaterNetworkModel(inp1)
+#wn = simulation.network.WaterNetworkModel(inp1)
 #print(wn.nodes._data['10']._coordinates)
 # n
 def computeInpCoor(inp):

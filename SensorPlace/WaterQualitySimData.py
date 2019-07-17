@@ -94,7 +94,7 @@ class WaterQualitySimData():
         final_dirt = {}
         d = node_dirt
         for i, j in enumerate(d.keys()):
-            final_dirt[i] = d[j]  # 新建字典, key为index, value为原来的nodeDirt的value
+            final_dirt[str(i)] = d[j]  # 新建字典, key为index, value为原来的nodeDirt的value
         for i in d.values():
             for j in range(len(i[0])):
                 k = i[0][j]

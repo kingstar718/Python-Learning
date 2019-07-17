@@ -145,7 +145,7 @@ if __name__=="__main__":
     #nodedirt = json.loads(data)
     #print(nodedirt["10012"])
     '''
-    wn = wntr.network.WaterNetworkModel("cs11021.inp")
+    wn = simulation.network.WaterNetworkModel("cs11021.inp")
     G = wn.get_graph()
     Degree = G.degree()
     k2 = []

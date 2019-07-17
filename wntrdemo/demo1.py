@@ -33,11 +33,11 @@ print(wn.node_name_list) # node
 print(wn.link_name_list) # link  仅仅获取管网名称 不包含前后节点
 '''
 
-#j = wntr.network.elements.Junction('1',wn) # junction类
+#j = simulation.network.elements.Junction('1',wn) # junction类
 #print(j.initial_quality)
 
 # Graph the network
-#wntr.graphics.plot_network(wn, title=wn.name)
+#simulation.graphics.plot_network(wn, title=wn.name)
 
 # Simulate hydraulics
 wn.options.quality.mode = 'CHEMICAL'  #需要设置为化学物质
@@ -46,7 +46,7 @@ results = sim.run_sim()
 
 # Plot results on the network
 #pressure_at_5hr = results.node['pressure'].loc[5*3600, :]
-#wntr.graphics.plot_network(wn, node_attribute=pressure_at_5hr, node_size=30, title='Pressure at 5 hours')
+#simulation.graphics.plot_network(wn, node_attribute=pressure_at_5hr, node_size=30, title='Pressure at 5 hours')
 
 #print(results.node['quality'])
 print(results.node['quality'].loc[ : 3*3600])
