@@ -110,7 +110,7 @@ if __name__=="__main__":
     jdirt = {"4":"c"}
     jsonpath = "F:\\AWorkSpace\\Python-Learning-Data\\node.json"
     nodeJson = readNodeJson(jsonpath)
-    wModel = wntr.network.WaterNetworkModel("F:\\AWorkSpace\\Python-Learning-Data\\cs11021.inp")
+    wModel = simulation.network.WaterNetworkModel("F:\\AWorkSpace\\Python-Learning-Data\\cs11021.inp")
     nodeList = wModel.node_name_list
     nodeDirt = computeNode(nodeJson, nodeList)
     '''

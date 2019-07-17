@@ -11,7 +11,7 @@ def demo1():
     inp_file2 = "cs11021_2.inp"
     wn = initwnModel(inp_file2)
     # waterQuality(wn, "40")
-    # wntr.graphics.plot_network(wn)
+    # simulation.graphics.plot_network(wn)
 
     # 管网简化
     skel_wn, remap = wntr.morph.skeletonize(wn, 400, return_map=True)

@@ -27,10 +27,14 @@ if __name__ == "__main__":
     inpfile = "ky8.inp"
     inpfile2 = "F:\\AWorkSpace\\Python-Learning-Data\\cs11021.inp"
     nodecsv = "F:\\AWorkSpace\\Python-Learning-Data\\simuNodes.csv"
+    net3inp = "F:\\AWorkSpace\\Python-Learning-Data\\Net3.inp"
+    nodelist = ['259', '231', '131', '209', '206', '184', '15', '151', '10', '217', '204', '601', '161', '239', '105']
+    drawnode(net3inp, nodelist)
+    '''
     import pandas as pd
     import numpy as np
     p = pd.read_csv("F:\\AWorkSpace\\Python-Learning-Data\\weightsorted.csv")
     print(list(p["nodeName"]))
     p_3628 = list(p["nodeName"])[0: 3628]
     print(len(p_3628))
-    drawnode(inpfile2, p_3628)
+    drawnode(inpfile2, p_3628)'''

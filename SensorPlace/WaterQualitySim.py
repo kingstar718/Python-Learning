@@ -1,5 +1,5 @@
 # encoding:utf-8
-from wntr import network, sim
+from wntr import network, sim, morph
 from time import time
 from os import path, remove
 from json import dump, dumps
@@ -15,10 +15,15 @@ class WaterQualitySim:
     多节点污染模拟(串行/并行)
     """
 
-    def __init__(self, inp):
+    def __init__(self, inp, is_simple=False):
         self.inp_path = inp
-        self.wn_model = self.init_model()     # 管网模型对象
-        self.nodeList = self.wn_model.node_name_list     # 管网所有节点
+        self.is_simple = is_simple
+        # self.wn_model = self.init_model(self.is_simple)     # 管网模型对象
+        if is_simple is False:
+            self.wn_model = self.init_model()
+        else:
+            self.wn_model = self.simple_model()
+        self.nodeList = self.wn_model.node_name_list  # 管网所有节点
 
     def init_model(self, time_duration=12 * 3600, report_time_step=600, report_start=0):
         """
@@ -40,6 +45,11 @@ class WaterQualitySim:
             return wn_model
         except:
             print("初始化管网模型发生异常")
+
+    def simple_model(self):
+        wn_model = self.init_model()
+        simple_model = morph.skeletonize(wn_model, 400, return_map=False)
+        return simple_model
 
     def water_quality(self, node_name, start_time=0, end_time=12 * 3600, quality=10000, rpt_file_path="F:\AWorkSpace\datatemp\ Node_"):
         """
@@ -163,10 +173,13 @@ if __name__ == "__main__":
     inp1 = "F:/AWorkSpace/Python-Learning-Data/Net3.inp"
     inp2 = "F:/AWorkSpace/Python-Learning-Data/ky8.inp"
     inp3 = "F:/AWorkSpace/Python-Learning-Data/cs11021.inp"
-    wqs = WaterQualitySim(inp2)
-    simdort = wqs.parallel_compute_time_dirt(wqs.nodeList, is_json=True)
-
-
-
-
-
+    wqs = WaterQualitySim(inp2 ,is_simple=True)
+    start = time()
+    simdort = wqs.parallel_compute_time_dirt(wqs.nodeList, is_json=False, parallel_num=3)
+    print(time()-start)
+    # 2 -- 44s
+    # 3 - - 31s-35.5s-32.1s-31.7-31.7s
+    # 4 -- 38s-38.8s-38.7s
+    # 5 -- 38s
+    # 6 -- 34s-32.48s-34.1s
+    # 7 -- 30.9s-31.5s-30.9s-31.1s

@@ -40,7 +40,7 @@ class WaterQualitySim:
                      rptFile="F:\AWorkSpace\datatemp\ Node_"):
         """
         特定节点污染物注入模拟
-        :param wnModel:  wntr 水力模型对象
+        :param wnModel:  simulation 水力模型对象
         :param nodeName:   节点名称
         :param startTime:   污染开始时间
         :param endTime:     污染结束时间

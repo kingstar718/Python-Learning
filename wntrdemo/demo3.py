@@ -9,7 +9,7 @@ epanet_sim_results = epanet_sim.run_sim()
 #WNTRSimulator是一个纯Python水力模拟引擎，基于与EPANET相同的方程式。
 # WNTRSimulator不包括运行水质模拟的方程式。
 # WNTRSimulator包括模拟泄漏的选项，并在需求驱动或压力相关的需求模式下运行液压模拟。
-#wntr_sim = wntr.sim.WNTRSimulator(wn)
+#wntr_sim = simulation.sim.WNTRSimulator(wn)
 #wntr_sim_results = wntr_sim.run_sim()
 
 '''
