@@ -29,6 +29,7 @@ if __name__ == "__main__":
     nodecsv = "F:\\AWorkSpace\\Python-Learning-Data\\simuNodes.csv"
     net3inp = "F:\\AWorkSpace\\Python-Learning-Data\\Net3.inp"
     nodelist = ['259', '231', '131', '209', '206', '184', '15', '151', '10', '217', '204', '601', '161', '239', '105']
+<<<<<<< HEAD
 
     drawnode(inpfile2, ['1848','429',  '464', '1709',  '543', '3085', '3241','1979', '910','1212', '2027','1006','1469','2166','1280','1663',
                        '3265','831','3350','2464','2525','1233','736' ,'3095','2274','198' ,'3550','477','1854','2687','1076','462','2209','660',
@@ -41,6 +42,9 @@ if __name__ == "__main__":
     G = wntr.network.WaterNetworkModel(inpfile2).get_graph()
     networkx.draw_networkx(G)
     '''
+=======
+    drawnode(net3inp, nodelist)
+>>>>>>> 78ba3404e23fc801fb6ab8dadb2855f24f05be24
     '''
     import pandas as pd
     import numpy as np
